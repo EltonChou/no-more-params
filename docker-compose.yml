@@ -1,0 +1,10 @@
+version: '3'
+services:
+    no-more-params:
+        image: eltonhyc/crawler:base
+        volumes:
+            - .:/workspace
+        working_dir: /workspace
+        command: sh .sh/python_init.sh
+        stdin_open: true
+        tty: true
