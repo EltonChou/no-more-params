@@ -10,6 +10,7 @@ setup(
     version=version,
     description="Remove unneccessary query-string from the URL given. Especially fbclid.",
     long_description=readme,
+    long_description_content_type="text/markdown",
     classifiers=[
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
