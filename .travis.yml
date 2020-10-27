@@ -1,11 +1,8 @@
 language: python
 
-python:
-- '3.9'
-- '3.8'
-- '3.7'
-- '3.6'
-
+before_install:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
 
 install:
 - pip install -r requirements.txt
@@ -18,8 +15,17 @@ branches:
 jobs:
   include:
     - stage: test
+      name: Unit Test
       script: pytest
+      python:
+        - 3.9
+        - 3.8
+        - 3.7
+        - 3.6
     - stage: deploy
+      name: Deploy to Pypi
+      python:
+        - 3.9
       deploy:
         provider: pypi
         user: "Elton_Chou"
@@ -30,10 +36,6 @@ jobs:
           python: '3.9'
 
 after_success:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
   - ./send.sh success $WEBHOOK
 after_failure:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
   - ./send.sh failure $WEBHOOK
