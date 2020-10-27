@@ -19,7 +19,8 @@ setup(
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
-        "Topic :: Internet :: Software Development :: Python Modules",
+        "Topic :: Internet",
+        "Topic :: Software Development :: Libraries :: Python Modules"
         "License :: OSI Approved :: MIT License"
     ],
     project_urls={
