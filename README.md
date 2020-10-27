@@ -1,3 +1,9 @@
+[![PyPI](https://img.shields.io/pypi/v/no-more-query-string?style=flat-square)](https://pypi.org/project/no-more-query-string/)
+[![Travis (.org)()](https://img.shields.io/travis/EltonChou/no-more-query-string?style=flat-square)](https://travis-ci.org/github/EltonChou/no-more-query-string)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/no-more-query-string?style=flat-square)](https://pypi.org/project/no-more-query-string/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/no-more-query-string?style=flat-square)
+![PyPI - License](https://img.shields.io/pypi/l/no-more-query-string?style=flat-square)
+
 # no-more-query-string
 Remove *unneccessary* query-string from the URL given. Especially fbclid.
 
