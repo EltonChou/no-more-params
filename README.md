@@ -21,8 +21,15 @@ from no_more_qs import NoMoreQS
 nmq = NoMoreQS()
 url = "https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia"
 
-NoMoreQS.clean(url)
+nmq.clean(url)
 # 'https://www.youtube.com/watch?v=h-RHH79hzHI'
+```
+or you just want to remove *fbclid*
+```py
+url = "https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia&fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U"
+
+NoMoreQs.remove_fbclid(url)
+# 'https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia'
 ```
 ## Parameters
 ***fbclid* will be cleaned from all domains**
