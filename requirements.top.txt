@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+lxml
+tld
+w3lib
+aiohttp[speedups]
+# test suites
+pytest
+PyYaml
