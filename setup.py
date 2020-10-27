@@ -3,7 +3,7 @@ from setuptools import setup
 
 readme = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
-version = '0.0.1'
+version = '0.0.2'
 
 setup(
     name='no-more-query-string',
@@ -12,6 +12,7 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     classifiers=[
+        "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -19,7 +20,6 @@ setup(
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        "Development Status :: 4 - Beta",
         "Topic :: Internet",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License"
