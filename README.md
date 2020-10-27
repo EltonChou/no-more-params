@@ -47,7 +47,7 @@ NoMoreQS(exclude_flds=exclude_flds).clean(url)
 # 'https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia'
 
 ```
-### strict ( bool=True )
+### strict ( `bool`=True )
 if the domain is not in `include_flds` or `exclude_flds`
 + True(default): Remove all unneccessary query string.
 + False: Only remove `fbclid` from query string.
@@ -64,5 +64,5 @@ NoMoreQS(strict=False).clean(url)
 ```py
 NoMoreQS().clean(url, allow_og_url=False)
 ```
-### allow_og_url (bool=False)
+### allow_og_url ( `bool`=False )
 if can't find `canonical url`, will return `og url`
