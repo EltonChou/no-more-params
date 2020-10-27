@@ -20,7 +20,7 @@ setup(
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
         "Topic :: Internet",
-        "Topic :: Software Development :: Libraries :: Python Modules"
+        "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License"
     ],
     project_urls={
