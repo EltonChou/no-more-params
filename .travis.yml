@@ -21,6 +21,10 @@ jobs:
   include:
     - stage: test
       name: Unit Test
+      python:
+        - 3.8
+        - 3.7
+        - 3.6
       script: pytest
 
     - stage: deploy
