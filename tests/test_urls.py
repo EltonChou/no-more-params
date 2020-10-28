@@ -23,24 +23,22 @@ def test_urls_in_strict_mode(url):
 
 def test_exclude_fld():
     url = {
-        "input": "https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia&fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U",
-        "output": "https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia"
+        "input": "https://github.com/EltonChou/no-more-query-string?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia&fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U",
+        "output": "https://github.com/EltonChou/no-more-query-string?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia"
     }
 
-    nmq = NoMoreQS(exclude_flds=('youtube.com'))
+    nmq = NoMoreQS(exclude_flds=('github.com'))
     assert nmq.clean(url["input"]) == url["output"]
 
 
 def test_include_fld():
     url = {
-        "input": "https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia&fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U",
-        "output": "https://www.youtube.com/watch?v=h-RHH79hzHI"
+        "input": "https://github.com/EltonChou/no-more-query-string?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia&fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U",
+        "output": "https://github.com/EltonChou/no-more-query-string"
     }
 
-    nmq = NoMoreQS(include_flds=('youtube.com'))
-    assert nmq.clean(url["input"], headers={
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36"
-    }) == url["output"]
+    nmq = NoMoreQS(include_flds=('github.com'))
+    assert nmq.clean(url["input"]) == url["output"]
 
 
 def test_remove_fbclid():

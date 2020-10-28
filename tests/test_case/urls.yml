@@ -1,6 +1,6 @@
 - input: https://m.gamer.com.tw/forum/Co.php?bsn=60143&snB=103847
   output: https://forum.gamer.com.tw/Co.php?bsn=60143&sn=103847
-- input: https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia
-  output: https://www.youtube.com/watch?v=h-RHH79hzHI
+- input: https://github.com/EltonChou/no-more-query-string?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia
+  output: https://github.com/EltonChou/no-more-query-string
 - input: https://medium.com/@local.friends.team?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
   output: https://medium.com/@local.friends.team
