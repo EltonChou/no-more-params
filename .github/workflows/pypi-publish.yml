@@ -29,3 +29,18 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
+    - name: Publish Success
+      uses: rjstone/discord-webhook-notify@v1.0.4
+      if: success()
+      with:
+        severity: info
+        color: '#42b3de'
+        details: Publish Succeeded!
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+    - name: Publish Failure
+      uses: rjstone/discord-webhook-notify@v1.0.4
+      if: failure()
+      with:
+        severity: error
+        details: Publish Error!
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
