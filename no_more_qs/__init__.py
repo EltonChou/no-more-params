@@ -119,14 +119,14 @@ def _super_cleaner(url: str, allow_og_url: bool = False, **kwargs):
 
     page = BeautifulSoup(response.text, "lxml")
 
-    canonical_url = _get_canonical_url(page)
-    if canonical_url:
-        return _fbclid_cleaner(canonical_url)
-
     if allow_og_url:
         og_url = _get_og_url(page)
         if og_url:
             return _fbclid_cleaner(og_url)
+
+    canonical_url = _get_canonical_url(page)
+    if canonical_url:
+        return _fbclid_cleaner(canonical_url)
 
     return _fbclid_cleaner(url)
 
