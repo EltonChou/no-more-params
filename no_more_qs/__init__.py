@@ -121,12 +121,12 @@ def _super_cleaner(url: str, allow_og_url: bool = False, **kwargs):
 
     canonical_url = _get_canonical_url(page)
     if canonical_url:
-        return canonical_url
+        return _fbclid_cleaner(canonical_url)
 
     if allow_og_url:
         og_url = _get_og_url(page)
         if og_url:
-            return og_url
+            return _fbclid_cleaner(og_url)
 
     return _fbclid_cleaner(url)
 
@@ -164,9 +164,7 @@ def _get_canonical_url(page: BeautifulSoup) -> str:
         link[canonical url]
     """
     canonical_url = page.select_one("link[rel='canonical']")
-    if canonical_url:
-        return canonical_url["href"]
-    return ''
+    return canonical_url["href"] if canonical_url else ''
 
 
 def _get_og_url(page: BeautifulSoup) -> str:
@@ -184,6 +182,4 @@ def _get_og_url(page: BeautifulSoup) -> str:
         meta[og:url]
     """
     og_url = page.select_one("meta[property='og:url']")
-    if og_url:
-        return og_url["content"]
-    return ''
+    return og_url["content"] if og_url else ''
