@@ -39,6 +39,13 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Merge develope -> main
+      uses: devmasx/merge-branch@v1.3.0
+      if: ${{ github.ref }} == 'refs/heads/develope' && ${{ matrix.python-version }} = '3.9'
+      with:
+        type: now
+        target_branch: main
+        github_token: ${{ github.token }}
     - name: Test Success
       uses: rjstone/discord-webhook-notify@v1.0.4
       if: success() && ${{ github.event_name }} == 'push'
@@ -53,10 +60,3 @@ jobs:
         severity: error
         details: Test Error! (Python ${{ matrix.python-version }})
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-    - name: Merge develope -> main
-      uses: devmasx/merge-branch@v1.3.0
-      if: ${{ github.ref }} == 'refs/heads/develope' && ${{ matrix.python-version }} = '3.9'
-      with:
-        type: now
-        target_branch: main
-        github_token: ${{ github.token }}
