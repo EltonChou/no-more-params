@@ -54,7 +54,7 @@ jobs:
         details: Test Error! (Python ${{ matrix.python-version }})
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     - name: Merge develope -> main
-      uses: actions/checkout@master
+      uses: devmasx/merge-branch@v1.3.0
       if: ${{ github.ref }} == 'refs/heads/develope' && ${{ matrix.python-version }} = '3.9'
       with:
         type: now
