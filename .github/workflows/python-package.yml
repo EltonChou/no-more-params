@@ -5,7 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ main ]
+    branches:
+    - main
+    - develope
   pull_request:
     branches: [ main ]
 
@@ -37,3 +39,25 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Merge develope -> main
+      uses: devmasx/merge-branch@v1.3.0
+      if: ${{ github.ref }} == 'refs/heads/develope' && ${{ matrix.python-version }} = '3.9'
+      with:
+        type: now
+        head_to_merge: ${{ github.ref }}
+        target_branch: main
+        github_token: ${{ github.token }}
+    - name: Test Success
+      uses: rjstone/discord-webhook-notify@v1.0.4
+      if: success() && ${{ github.event_name }} == 'push'
+      with:
+        severity: info
+        details: Test Succeeded! (Python ${{ matrix.python-version }})
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+    - name: Test Failure
+      uses: rjstone/discord-webhook-notify@v1.0.4
+      if: failure() && ${{ github.event_name }} == 'push'
+      with:
+        severity: error
+        details: Test Error! (Python ${{ matrix.python-version }})
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
