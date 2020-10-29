@@ -4,6 +4,8 @@ lxml
 tld
 w3lib
 aiohttp[speedups]
+flake8
+autopep8
 # test suites
 pytest
 PyYaml
