@@ -41,21 +41,21 @@ jobs:
         pytest
     - name: Test Success
       uses: rjstone/discord-webhook-notify@v1.0.4
-      if: success() && github.event_name == 'push'
+      if: ${{ success() && github.event_name == 'push' }}
       with:
         severity: info
         details: Test Succeeded! (Python ${{ matrix.python-version }})
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     - name: Test Failure
       uses: rjstone/discord-webhook-notify@v1.0.4
-      if: failure() && github.event_name == 'push'
+      if: ${{ failure() && github.event_name == 'push' }}
       with:
         severity: error
         details: Test Error! (Python ${{ matrix.python-version }})
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     - name: Merge develope -> main
       uses: actions/checkout@master
-      if: github.ref == 'refs/heads/develope' && matrix.python-version = '3.9'
+      if: ${{ github.ref == 'refs/heads/develope' && matrix.python-version = '3.9' }}
       with:
         type: now
         target_branch: main
