@@ -49,14 +49,14 @@ jobs:
         github_token: ${{ github.token }}
     - name: Test Success
       uses: rjstone/discord-webhook-notify@v1.0.4
-      if: ${{ success() && github.event_name }} == 'push'
+      if: ${{ success() && github.event_name == 'push'}}
       with:
         severity: info
         details: Test Succeeded! (Python ${{ matrix.python-version }})
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     - name: Test Failure
       uses: rjstone/discord-webhook-notify@v1.0.4
-      if: ${{ failure() && github.event_name }} == 'push'
+      if: ${{ failure() && github.event_name == 'push'}}
       with:
         severity: error
         details: Test Error! (Python ${{ matrix.python-version }})
