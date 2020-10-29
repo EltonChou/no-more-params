@@ -24,10 +24,12 @@ class NoMoreQS:
         Parameters
         ----------
         include_flds : Union[List[str], Tuple[str]], optional
-            first-level domains list which are allowed to clean query string., by default []
+            first-level domains list which are allowed to clean query string,
+            by default []
 
         exclude_flds : Union[List[str], Tuple[str]], optional
-            first-level domains which are disallowed to clean query string., by default []
+            first-level domains which are disallowed to clean query string,
+            by default []
 
         strict : bool, optional
             mode of clean, by default True
