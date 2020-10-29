@@ -44,6 +44,7 @@ jobs:
       if: ${{ github.ref }} == 'refs/heads/develope' && ${{ matrix.python-version }} = '3.9'
       with:
         type: now
+        head_to_merge: ${{ github.ref }}
         target_branch: main
         github_token: ${{ github.token }}
     - name: Test Success
