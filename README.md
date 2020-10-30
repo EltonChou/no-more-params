@@ -73,9 +73,3 @@ NoMoreQS(strict=True).clean(url)
 NoMoreQS(strict=False).clean(url)
 # 'https://www.youtube.com/watch?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia'
 ```
-## Method parameters
-```py
-NoMoreQS().clean(url, allow_og_url=False)
-```
-### allow_og_url ( `bool`=False )
-if can't find `canonical url`, will return `og url`

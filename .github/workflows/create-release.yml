@@ -16,6 +16,10 @@ jobs:
         uses: battila7/get-version-action@v2
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -27,3 +31,34 @@ jobs:
           body_path: ./RELEASE_NOTE.md
           draft: false
           prerelease: false
+      - name: If release failure rollback
+        uses: dev-drprasad/delete-tag-and-release@v0.1.2
+        if: failure()
+        with:
+          delete_release: true # default: false
+          tag_name: ${{ steps.get_version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and publish
+        if: success()
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          python setup.py sdist bdist_wheel
+          twine upload dist/*
+      - name: Publish Failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          details: Publish Error!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Publish Success
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          color: '#42b3de'
+          details: Publish Succeeded!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
