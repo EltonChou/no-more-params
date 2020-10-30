@@ -1,5 +1,5 @@
 from typing import List, Tuple, Union
-from urllib.parse import parse_qsl, url_parse
+from urllib.parse import parse_qsl, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -224,7 +224,7 @@ def parse_url_qs_to_dict(url: str) -> dict:
     if not url:
         return {}
 
-    qs = url_parse(url).query
+    qs = urlparse(url).query
     dict_qs = dict(parse_qsl(qs))
 
     return dict_qs
