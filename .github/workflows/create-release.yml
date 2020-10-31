@@ -7,9 +7,10 @@ on:
 name: Create Release
 
 jobs:
-  build:
+  release:
     name: Create Release
     runs-on: ubuntu-latest
+    python-version: 3.9
     steps:
       - name: Get latest release version number
         id: get_version
@@ -41,8 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and publish
         if: success()
-        with:
-          python-version: 3.9
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
