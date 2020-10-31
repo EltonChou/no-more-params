@@ -1,3 +1,4 @@
+import re
 from typing import List, Tuple, Union
 from urllib.parse import parse_qsl, urlparse
 
@@ -222,7 +223,7 @@ def _get_page(url: str, headers: dict = {}, cookies: dict = {}) -> BeautifulSoup
     session = requests.Session()
     response = session.head(url)
     content_type = response.headers["content-type"]
-    if content_type != "text/html":
+    if not re.search("text/html", content_type):
         return False
 
     response = requests.get(url, headers=headers, cookies=cookies)
