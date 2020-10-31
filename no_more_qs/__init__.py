@@ -51,6 +51,9 @@ class NoMoreQS:
         url : str
             Any useable url.
 
+        cookies : dict, optional
+            cookies for request
+
         Returns
         -------
         str
@@ -99,8 +102,11 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     url : str
         Any useable url.
 
-    kwargs : dict, optional
-        Optional arguments that ``request`` takes.
+    headers : dict, optional
+        Optional headers ``request`` takes.
+
+    cookeis : dict, optional
+        Optional cookies ``request takes.
 
     Returns
     -------
