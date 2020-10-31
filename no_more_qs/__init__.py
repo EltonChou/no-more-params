@@ -110,7 +110,7 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     page = _get_page(url, headers, cookies)
 
     if not page:
-        return _fbclid_cleaner(url)
+        return url
 
     canonical_url = _get_canonical_url(page)
     og_url = _get_og_url(page)
@@ -219,6 +219,12 @@ def _get_page(url: str, headers: dict = {}, cookies: dict = {}) -> BeautifulSoup
     -------
     BeautifulSoup
     """
+    session = requests.Session()
+    response = session.head(url)
+    content_type = response.headers["content-type"]
+    if content_type != "text/html":
+        return False
+
     response = requests.get(url, headers=headers, cookies=cookies)
 
     if response.status_code > 400:
