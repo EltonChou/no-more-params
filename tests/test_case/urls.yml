@@ -4,3 +4,5 @@
   output: https://github.com/EltonChou/no-more-query-string
 - input: https://medium.com/@local.friends.team?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
   output: https://medium.com/@local.friends.team
+- input: https://ram.komica2.net/00/src/1604151827341.webm?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
+  output: https://ram.komica2.net/00/src/1604151827341.webm
