@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5 (2020-11-01)
+### Added
++ check the url content, if not `text/html`, return orginal url without fbclid
+
 ## 0.0.4 (2020-10-31)
 ### Fixed
 + Wiser cleaner

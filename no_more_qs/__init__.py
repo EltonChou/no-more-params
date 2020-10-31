@@ -10,7 +10,7 @@ from w3lib.url import url_query_cleaner
 __author__ = "Elton H.Y. Chou"
 
 __license__ = "MIT"
-__version__ = "0.0.4-beta"
+__version__ = "0.0.5"
 __maintainer__ = "Elton H.Y. Chou"
 __email__ = "plscd748@gmail.com"
 
