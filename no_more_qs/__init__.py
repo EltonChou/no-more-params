@@ -241,7 +241,7 @@ def _get_page(url: str, headers: dict = {}, cookies: dict = {}) -> BeautifulSoup
     return page
 
 
-def parse_url_qs_to_dict(url: str) -> dict:
+def parse_url_qs_to_dict(url: str, as_set=False) -> Union[dict, set]:
     """
     Return qs as dict, if no qs return {}
 
@@ -250,10 +250,12 @@ def parse_url_qs_to_dict(url: str) -> dict:
     url : str
         validate url
 
+    as_set : bool, optional
+        use ``set`` as return type
+
     Returns
     -------
-    dict
-        qs as dict
+    Union[dict, set]
     """
     if not url:
         return {}
@@ -261,8 +263,15 @@ def parse_url_qs_to_dict(url: str) -> dict:
     qs = urlparse(url).query
     dict_qs = dict(parse_qsl(qs))
 
-    return dict_qs
+    return set(dict_qs) if as_set else dict_qs
 
 
 def count_qs_length(url: str) -> int:
     return len(parse_url_qs_to_dict(url)) if url else 0
+
+
+def qs_delta(original_url: str, cleaned_url: str) -> set:
+    original_qs = parse_url_qs_to_dict(original_url, as_set=True)
+    cleaned_qs = parse_url_qs_to_dict(cleaned_url, as_set=True)
+
+    return original_qs - cleaned_qs

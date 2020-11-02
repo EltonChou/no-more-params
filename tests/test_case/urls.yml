@@ -1,8 +1,22 @@
 - input: https://m.gamer.com.tw/forum/Co.php?bsn=60143&snB=103847
   output: https://forum.gamer.com.tw/Co.php?bsn=60143&sn=103847
+  complement:
+  - snB
 - input: https://github.com/EltonChou/no-more-query-string?v=h-RHH79hzHI&feature=emb_logo&ab_channel=Ceia
   output: https://github.com/EltonChou/no-more-query-string
+  complement:
+  - v
+  - feature
+  - ab_channel
 - input: https://medium.com/@local.friends.team?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
   output: https://medium.com/@local.friends.team
+  complement:
+  - fbclid
 - input: https://ram.komica2.net/00/src/1604151827341.webm?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
   output: https://ram.komica2.net/00/src/1604151827341.webm
+  complement:
+  - fbclid
+- input: https://pets.ettoday.net/news/72942?redirect=1
+  output: https://pets.ettoday.net/news/72942
+  complement:
+  - redirect

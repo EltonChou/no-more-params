@@ -1,6 +1,6 @@
 import pytest
 import yaml
-from no_more_qs import NoMoreQS
+from no_more_qs import NoMoreQS, qs_delta
 
 
 def load_yaml(path):
@@ -53,3 +53,8 @@ def test_remove_fbclid():
     url = urls[2]
     assert NoMoreQS.remove_fbclid(url["input"]) == url["output"]
     assert nmq.clean(url["input"]) == url["output"]
+
+
+def test_qs_complement(url):
+    complement = qs_delta(url["input"], url["output"])
+    assert sorted(url["complement"]) == sorted(list(complement))
