@@ -163,7 +163,9 @@ def _fbclid_cleaner(url: str, **kwargs) -> str:
     str
         cleaned url, fbclid is always be cleaned.
     """
-    url = url_query_cleaner(url, ("fbclid"), remove=True)
+    url = url_query_cleaner(url, ("fbclid"), remove=True, keep_fragments=True)
+    if url.endswith("#"):
+        return url[:-1]
     return url
 
 
