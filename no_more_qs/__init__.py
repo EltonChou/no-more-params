@@ -10,7 +10,7 @@ from w3lib.url import url_query_cleaner
 __author__ = "Elton H.Y. Chou"
 
 __license__ = "MIT"
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 __maintainer__ = "Elton H.Y. Chou"
 __email__ = "plscd748@gmail.com"
 
@@ -267,10 +267,25 @@ def parse_url_qs_to_dict(url: str, as_set=False) -> Union[dict, set]:
 
 
 def count_qs_length(url: str) -> int:
+    """query string counting"""
     return len(parse_url_qs_to_dict(url)) if url else 0
 
 
 def qs_delta(original_url: str, cleaned_url: str) -> set:
+    """
+    query string delta as set
+
+    Parameters
+    ----------
+    original_url : str
+
+    cleaned_url : str
+
+    Returns
+    -------
+    set
+        set query string delta
+    """
     original_qs = parse_url_qs_to_dict(original_url, as_set=True)
     cleaned_qs = parse_url_qs_to_dict(cleaned_url, as_set=True)
 
