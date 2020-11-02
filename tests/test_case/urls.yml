@@ -8,8 +8,8 @@
   - v
   - feature
   - ab_channel
-- input: https://medium.com/@local.friends.team?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U
-  output: https://medium.com/@local.friends.team
+- input: https://medium.com/@local.friends.team?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U#edc2
+  output: https://medium.com/@local.friends.team#edc2
   complement:
   - fbclid
 - input: https://ram.komica2.net/00/src/1604151827341.webm?fbclid=IwAR2NasdasdasdadasdfP58isTW-c3U

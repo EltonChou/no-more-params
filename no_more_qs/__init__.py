@@ -1,6 +1,6 @@
 import re
-from typing import List, Tuple, Union
-from urllib.parse import parse_qsl, urlparse
+from typing import Callable, List, Tuple, Union
+from urllib.parse import parse_qsl, urlparse, urlsplit, urlunsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -61,7 +61,7 @@ class NoMoreQS:
         """
         fld = get_fld(url)
 
-        cleaner = _super_cleaner if self.strict else _fbclid_cleaner
+        cleaner: Callable = _super_cleaner if self.strict else _fbclid_cleaner
 
         is_allowed_fld = fld in self.exclude_flds
         if is_allowed_fld:
@@ -113,6 +113,7 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     str
         cleaned url, fbclid is always be cleaned.
     """
+    fragment = urlparse(url).fragment
     url = _fbclid_cleaner(url)
     page = _get_page(url, headers, cookies)
 
@@ -130,7 +131,7 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     canonical_qs_len = count_qs_length(canonical_url)
     og_qs_len = count_qs_length(og_url)
 
-    # path_len > qs_len > -(netloc)
+    # Order weights: path_len -> qs_len -> -(netloc)
     candidate_urls = sorted([
         (origin_path_len, origin_qs_len, -len(urlparse(url).netloc), url),
         (canonical_path_len, canonical_qs_len, -len(urlparse(canonical_url).netloc), canonical_url),
@@ -139,6 +140,10 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
 
     for path_len, _, _, the_url in candidate_urls:
         if path_len:
+            if fragment:
+                url_components = urlsplit(the_url)
+                url_components = url_components._replace(fragment=fragment)
+                the_url = urlunsplit(url_components)
             return the_url
 
     return url
@@ -158,7 +163,9 @@ def _fbclid_cleaner(url: str, **kwargs) -> str:
     str
         cleaned url, fbclid is always be cleaned.
     """
-    url = url_query_cleaner(url, ("fbclid"), remove=True)
+    url = url_query_cleaner(url, ("fbclid"), remove=True, keep_fragments=True)
+    if url.endswith("#"):
+        return url[:-1]
     return url
 
 
