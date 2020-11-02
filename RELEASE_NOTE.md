@@ -1,3 +1,3 @@
 ## Added
 
-+ check the url content, if not `text/html`, return orginal url without fbclid
++ NoMoreQS.qs_delta for query string delta to check different with orignal url
