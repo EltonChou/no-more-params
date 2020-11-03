@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.8 (2020-11-03)
+## Fixed
++ Hotfix
+
 ## 0.0.7 (2020-11-03)
 ## Added
 + support decoding percent-encode
