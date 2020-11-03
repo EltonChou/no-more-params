@@ -19,7 +19,8 @@ def url(request):
 
 
 def test_urls_in_strict_mode(url):
-    nmq = NoMoreQS()
+    exclude_flds = ("youtu.be")
+    nmq = NoMoreQS(exclude_flds=exclude_flds)
     assert nmq.clean(url["input"]) == url["output"]
 
 
