@@ -29,7 +29,7 @@ def test_url_dequote():
         "%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%B8%AB%E5%8D%B3%E5%B0%87%E5%A4%B1%E6%" \
         "A5%AD%EF%BC%9F%E4%BA%BA%E9%A1%9E%E5%B0%87%E5%83%8F%E9%A6%B4%E7%8B%97%E4%B8%80" \
         "%E6%A8%A3%E8%A8%93%E7%B7%B4%E9%9B%BB%E8%85%A6/"
-    assert nmq.clean(url, unquote=True) == "http://techfeed.today/2016/06/21/程式設計師即將失業？人類將像馴狗一樣訓練電腦/"
+    assert nmq.clean(url, decode_percent_encode=True) == "http://techfeed.today/2016/06/21/程式設計師即將失業？人類將像馴狗一樣訓練電腦/"
 
 
 pure_url = "https://github.com/EltonChou/no-more-query-string"
