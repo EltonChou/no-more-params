@@ -3,7 +3,7 @@ from setuptools import setup
 
 readme = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
-version = '0.0.6'
+version = '0.0.7'
 
 setup(
     name='no-more-query-string',

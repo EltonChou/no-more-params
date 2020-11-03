@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7 (2020-11-03)
+## Added
++ support decoding percent-encode
+
 ## 0.0.6 (2020-11-03)
 ## Added
 + NoMoreQS.qs_delta for query string delta to check different with orignal url
