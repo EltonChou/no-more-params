@@ -20,3 +20,6 @@
   output: https://pets.ettoday.net/news/72942
   complement:
   - redirect
+- input: https://youtu.be/bvMCNW8Twz8
+  output: https://youtu.be/bvMCNW8Twz8
+  complement: []
