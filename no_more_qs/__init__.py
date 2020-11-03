@@ -42,7 +42,7 @@ class NoMoreQS:
         self.exclude_flds = exclude_flds
         self.strict = strict
 
-    def clean(self, url: str, cookies: dict = {}, unquote: bool = False) -> str:
+    def clean(self, url: str, cookies: dict = {}, decode_percent_encode: bool = False) -> str:
         """
         clean
 
@@ -54,7 +54,7 @@ class NoMoreQS:
         cookies : dict, optional
             cookies for request
 
-        unquote : bool, optional
+        decode_percent_encode : bool, optional
             decoded the percent-encoded
 
         Returns
@@ -76,10 +76,12 @@ class NoMoreQS:
 
         cleaned_url = cleaner(url, headers=self.headers, cookies=cookies)
 
-        return unquote_plus(cleaned_url)
+        if decode_percent_encode:
+            return unquote_plus(cleaned_url)
+        return cleaned_url
 
     @staticmethod
-    def remove_fbclid(url: str) -> str:
+    def remove_fbclid(url: str, decode_percent_encode: bool = False) -> str:
         """
         remove fbclid
         if you affraid the power of super cleaner,
@@ -90,12 +92,19 @@ class NoMoreQS:
         url : str
             Any useable url.
 
+        decode_percent_encode : bool, optional
+            decoded the percent-encoded
+
         Returns
         -------
         str
             cleaned url, fbclid is always be cleaned.
         """
-        return _fbclid_cleaner(url)
+        cleaned_url = _fbclid_cleaner(url)
+
+        if decode_percent_encode:
+            return unquote_plus(cleaned_url)
+        return cleaned_url
 
 
 def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
