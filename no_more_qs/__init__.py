@@ -10,7 +10,7 @@ from w3lib.url import url_query_cleaner
 __author__ = "Elton H.Y. Chou"
 
 __license__ = "MIT"
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 __maintainer__ = "Elton H.Y. Chou"
 __email__ = "plscd748@gmail.com"
 
@@ -251,10 +251,7 @@ def _get_page(url: str, headers: dict = {}, cookies: dict = {}) -> BeautifulSoup
     response = session.head(url)
 
     if response.is_permanent_redirect or response.is_redirect:
-        redirect_location = response.headers["location"]
-        if len(redirect_location) > len(url):
-            return False
-        url = redirect_location
+        url = response.headers["location"]
 
     content_type = response.headers["content-type"]
     if not re.search("text/html", content_type):
