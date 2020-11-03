@@ -1,3 +1,3 @@
-## Added
+## Fixed
 
-+ support decoding percent-encode
++ Hotfix
