@@ -1,6 +1,6 @@
 import re
 from typing import Callable, List, Tuple, Union
-from urllib.parse import parse_qsl, urlparse, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, urlparse, urlsplit, urlunsplit, unquote_plus
 
 import requests
 from bs4 import BeautifulSoup
@@ -42,7 +42,7 @@ class NoMoreQS:
         self.exclude_flds = exclude_flds
         self.strict = strict
 
-    def clean(self, url: str, cookies: dict = {}) -> str:
+    def clean(self, url: str, cookies: dict = {}, unquote: bool = False) -> str:
         """
         clean
 
@@ -53,6 +53,9 @@ class NoMoreQS:
 
         cookies : dict, optional
             cookies for request
+
+        unquote : bool, optional
+            decoded the percent-encoded
 
         Returns
         -------
@@ -71,7 +74,9 @@ class NoMoreQS:
         if is_not_allowed_fld:
             cleaner = _super_cleaner
 
-        return cleaner(url, headers=self.headers, cookies=cookies)
+        cleaned_url = cleaner(url, headers=self.headers, cookies=cookies)
+
+        return unquote_plus(cleaned_url)
 
     @staticmethod
     def remove_fbclid(url: str) -> str:
