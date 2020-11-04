@@ -127,6 +127,7 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     str
         cleaned url, fbclid is always be cleaned.
     """
+    # reserve frament
     fragment = urlparse(url).fragment
     url = _fbclid_cleaner(url)
     page = _get_page(url, headers, cookies)
@@ -138,8 +139,8 @@ def _super_cleaner(url: str, headers: dict = {}, cookies: dict = {}) -> str:
     og_url = _get_og_url(page)
 
     origin_path_len = len(urlparse(url).path)
-    og_path_len = len(urlparse(og_url).path)
     canonical_path_len = len(urlparse(canonical_url).path)
+    og_path_len = len(urlparse(og_url).path)
 
     origin_qs_len = count_qs_length(url)
     canonical_qs_len = count_qs_length(canonical_url)
@@ -247,11 +248,9 @@ def _get_page(url: str, headers: dict = {}, cookies: dict = {}) -> BeautifulSoup
     -------
     BeautifulSoup
     """
-    session = requests.Session()
-    response = session.head(url)
-
-    if response.is_permanent_redirect or response.is_redirect:
-        url = response.headers["location"]
+    # if the url is redirected, set final url as url.
+    response = requests.head(url, allow_redirects=True)
+    url = response.url
 
     content_type = response.headers["content-type"]
     if not re.search("text/html", content_type):
